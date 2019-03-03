@@ -5,7 +5,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 /**
- * Test
+ * Test.
  *
  * @author Jora Abjora
  * @version $Id$
@@ -17,7 +17,7 @@ public class CalculateTest {
      * Test echo
      */
     @Test
-    public void whenTakeNmaeThreeEchoPlusName(){
+    public void whenTakeNmaeThreeEchoPlusName() {
         String input = "Jora Abjora";
         String expect = "Echo, echo, echo : Jora Abjora";
         Calculate calc = new Calculate();
