@@ -6,7 +6,6 @@ import org.junit.Test;
 
 /**
  * Test.
- *
  * @author Jora Abjora
  * @version $Id$
  * @since 0.1
