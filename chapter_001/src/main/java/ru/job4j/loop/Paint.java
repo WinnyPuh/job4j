@@ -38,4 +38,46 @@ public class Paint {
 
         return screen.toString();
     }
+
+    /**
+     * Метод рисует правсторонний треугольник.
+     * @param height - высота треугольника.
+     * @return - правосторонний треугольник.
+     */
+    public String rightTrl(int height) {
+        StringBuilder screen = new StringBuilder();
+        int width = height;
+        for (int row = 0; row != height; row++) {
+            for (int column = 0; column != width; column++) {
+                if (row >= column) {
+                    screen.append("^");
+                } else {
+                    screen.append(" ");
+                }
+            }
+            screen.append(System.lineSeparator());
+        }
+        return screen.toString();
+    }
+
+    /**
+     * Метод рисует левосторонний треугольник.
+     * @param height - высота треугольника.
+     * @return - левосторонний треугольник.
+     */
+    public String leftTrl(int height) {
+        StringBuilder screen = new StringBuilder();
+        int width = height;
+        for (int row = 0; row != height; row++) {
+            for (int column = width-1; column >= 0; column--) {
+                if (row >= column) {
+                    screen.append("^");
+                } else {
+                    screen.append(" ");
+                }
+            }
+            screen.append(System.lineSeparator());
+        }
+        return screen.toString();
+    }
 }
