@@ -19,7 +19,7 @@ public class FindLoopTest {
         int[] input = new int[] {5, 10, 3};
         int value = 5;
         int result = findLoop.indexOf(input, value);
-        int except = 0;
-        assertThat(result, is(except));
+        int expect = 0;
+        assertThat(result, is(expect));
     }
 }
