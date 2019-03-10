@@ -21,6 +21,9 @@ public class FindLoop {
                 break;
             }
         }
+        if (result == -1) {
+            System.out.println("Данного элемента нет в масиве!");
+        }
         return result;
     }
 }
