@@ -20,12 +20,7 @@ public class MatrixCheck {
         for (int i = 0; i < data.length; i++) {
             //заполняет массив взачениями по диагонали с верху в низ.
             array1[i] = data[i][i];
-            for (int j = 0; j < data.length; j++) {
-                if(i + j == data.length - 1) {
-                    //заполняет массив взачениями по диагонали с низу в верх.
-                    array2[i] = data[i][j];
-                }
-            }
+            array2[i] = data[data.length - i][i];
         }
         Check check = new Check();
         if (check.mono(array1) && check.mono(array2)) {
