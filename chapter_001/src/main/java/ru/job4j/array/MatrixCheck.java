@@ -14,17 +14,18 @@ public class MatrixCheck {
      * @return - результат проверки.
      */
     public boolean mono(boolean[][] data) {
-        boolean result = false;
-        boolean[] array1 = new boolean[data.length];
-        boolean[] array2 = new boolean[data.length];
-        for (int i = 0; i < data.length; i++) {
-            //заполняет массив взачениями по диагонали с верху в низ.
-            array1[i] = data[i][i];
-            array2[i] = data[data.length - i - 1][i];
-        }
-        Check check = new Check();
-        if (check.mono(array1) && check.mono(array2)) {
-            result = true;
+        boolean result = true;
+
+        for (int i = 1; i < data.length; i++) {
+            if (data[0][0] != data[i][i]) {       //проверяем первую диагональ на разные значения
+                result = false;
+                break;
+            }
+
+            if (data[data.length - 1][i] != data[data.length - 1 - i][0]) {
+            result = false;
+            break;
+            }
         }
         return result;
     }
