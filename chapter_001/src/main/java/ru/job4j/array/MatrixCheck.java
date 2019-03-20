@@ -22,7 +22,7 @@ public class MatrixCheck {
                 break;
             }
 
-            if (data[data.length - 1][i] != data[data.length - 1 - i][0]) {
+            if (data[data.length - 1][0] != data[data.length - 1 - i][i]) {
             result = false;
             break;
             }
