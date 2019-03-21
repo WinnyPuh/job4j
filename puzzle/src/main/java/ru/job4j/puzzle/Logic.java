@@ -4,7 +4,7 @@ import ru.job4j.puzzle.firuges.Cell;
 import ru.job4j.puzzle.firuges.Figure;
 
 /**
- * //TODO add comments.
+ * 	Пазлы. Тестовое задание.[#116939].
  *
  * @author Petr Arsentev (parsentev@yandex.ru)
  * @version $Id$
@@ -70,6 +70,7 @@ public class Logic {
         int[][] table = this.convert();
         int res1 = 0;
         int res2 = 0;
+        boolean result = false;
         for (int i = 0; i < table.length; i++) {
             for (int j = 0; j < table.length; j++) {
                 if (table[i][j] == 1) {
@@ -79,8 +80,14 @@ public class Logic {
                     res2++;
                 }
             }
+            if (res1 == table.length || res2 == table.length) {
+                result = true;
+            } else {
+                res1 = 0;
+                res2 = 0;
+            }
         }
-        return res1 == table.length || res2 == table.length;
+        return result;
     }
 
     public int[][] convert() {
