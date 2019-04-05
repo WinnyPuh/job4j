@@ -1,7 +1,5 @@
 package ru.job4j.tracker;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -35,7 +33,6 @@ public class Tracker {
      */
     public boolean replace(String id, Item item) {
         boolean result = false;
-        //findById(id);
         for (int i = 0; i < position; i++) {
             if (items[i] != null && items[i].getId().equals(id)) {
                 items[i] = item;
