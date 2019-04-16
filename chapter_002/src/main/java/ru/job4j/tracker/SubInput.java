@@ -8,7 +8,7 @@ public class SubInput {
         this.answers = answers;
     }
 
-    public String ask (String question) {
+    public String ask(String question) {
         System.out.print(question);
         return answers[position++];
     }
