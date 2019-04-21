@@ -71,8 +71,8 @@ public class StartUI {
     private void showAllItems() {
         System.out.println("------------------- Все заявки --------------------");
         for (Item item : tracker.findAll()) {
-            System.out.println(item.getName() + " | " + item.getDesc() + " | " + item.getId());
-            System.out.printf("%15s%n | %15s%n | %15s%n", item.getName(), item.getDesc(), item.getId());
+            //System.out.println(item.getName() + " | " + item.getDesc() + " | " + item.getId());
+            System.out.printf("%15s | %15s | %15s%n", item.getName(), item.getDesc(), item.getId());
         }
         System.out.println("---------------------------------------------------");
     }
@@ -106,7 +106,7 @@ public class StartUI {
         String id = this.input.ask("Введите ID заявки :");
         if (id != null) {
             Item result = tracker.findById(id);
-            System.out.printf("%15s%n | %15s%n | %15s%n", result.getName(), result.getDesc(), result.getId());
+            System.out.printf("%15s | %15s | %15s%n", result.getName(), result.getDesc(), result.getId());
             System.out.println("---------------------------------------------------");
         } else {
             System.out.println("---------------- Заявка не найдена ----------------");
@@ -119,7 +119,7 @@ public class StartUI {
         String name = this.input.ask("Введите имя заявки :");
         Item[] result = tracker.findByName(name);
         for (Item el : result) {
-            System.out.printf("%15s%n | %15s%n | %15s%n", el.getName(), el.getDesc(), el.getId());
+            System.out.printf("%15s | %15s | %15s%n", el.getName(), el.getDesc(), el.getId());
             System.out.println("---------------------------------------------------");
         }
     }
