@@ -6,7 +6,7 @@ package ru.job4j.tracker;
  * @since 0.1
  */
 
-public class StubInput implements Input{
+public class StubInput implements Input {
     /**
      * Это поле содержит последовательность ответов пользователя.
      * Например. Если пользователь
