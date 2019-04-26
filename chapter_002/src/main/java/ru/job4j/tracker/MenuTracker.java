@@ -199,8 +199,8 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             System.out.println("------------ Search item by Id ------------");
             String id = input.ask("Please, provide ID item for search: ");
-            if (id != null) {
-                Item result = tracker.findById(id);
+            Item result = tracker.findById(id);
+            if (id != null && result != null) {
                 System.out.printf("%12s | %12s | %12s%n", result.getName(), result.getDesc(), result.getId());
                 System.out.println("-------------------------------------------");
             } else {

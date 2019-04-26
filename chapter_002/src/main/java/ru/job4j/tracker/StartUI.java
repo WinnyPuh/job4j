@@ -40,6 +40,8 @@ public class StartUI {
     }
 
     /**
+     * 1. Создать действия UserAction[#116997].
+    /**
      * Запускт программы.
      * @param args
      */
