@@ -37,7 +37,7 @@ public class MenuTracker {
      * Method fills array.
      */
     public void fillActions() {
-        this.actions.add(new AddItem(0, "Add program"));
+        this.actions.add(new AddItem(0, "Add new Item"));
         this.actions.add(new ShowItem(1, "Show all items"));
         this.actions.add(new UpdateItem(2, "Edit item"));
         this.actions.add(new DeleteItem(3, "Delete item"));

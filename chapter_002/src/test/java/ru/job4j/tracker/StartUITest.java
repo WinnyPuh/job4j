@@ -18,14 +18,13 @@ import static org.junit.Assert.assertThat;
 public class StartUITest {
     private final Tracker tracker = new Tracker(); // создаём Tracker
     private final StringBuilder menu = new StringBuilder()
-            .append("Меню.").append(System.lineSeparator()).append(System.lineSeparator())
             .append("0. Add new Item").append(System.lineSeparator())
             .append("1. Show all items").append(System.lineSeparator())
             .append("2. Edit item").append(System.lineSeparator())
             .append("3. Delete item").append(System.lineSeparator())
             .append("4. Find item by Id").append(System.lineSeparator())
             .append("5. Find items by name").append(System.lineSeparator())
-            .append("6. Exit Program").append(System.lineSeparator()).append(System.lineSeparator());
+            .append("6. Exit program").append(System.lineSeparator()).append(System.lineSeparator());
 
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
@@ -101,10 +100,13 @@ public class StartUITest {
         assertThat(new String(this.out.toByteArray()), is(
                 new StringBuilder()
                         .append(menu)
-                        .append("------------ Добавление новой заявки --------------").append(System.lineSeparator())
-                        .append("------------ Новая заявка с getId : ")
-                        .append(tracker.findAll()[0].getId())
-                        .append("-----------").append(System.lineSeparator())
+                        .append("------------ Adding new item --------------").append(System.lineSeparator())
+                        .append("------------ New Item with Id: ")
+                        .append(tracker.findAll()[0].getId()).append(System.lineSeparator())
+                        .append("------------ New Item with Name: ")
+                        .append(tracker.findAll()[0].getName()).append(System.lineSeparator())
+                        .append("------------ New Item with Description: ")
+                        .append(tracker.findAll()[0].getDesc()).append(System.lineSeparator())
                         .append(menu)
                 .toString())
         );
@@ -118,11 +120,9 @@ public class StartUITest {
         assertThat(new String(this.out.toByteArray()), is(
                 new StringBuilder()
                         .append(menu)
-                        .append("------------- Поиск заявки по имени ---------------").append(System.lineSeparator())
-                        .append("      ").append(item.getName())
-                        .append(" |            ").append(item.getDesc())
-                        .append(" |   ").append(item.getId()).append(System.lineSeparator())
-                        .append("---------------------------------------------------").append(System.lineSeparator())
+                        .append("----------- Search item by name -----------").append(System.lineSeparator())
+                        .append(String.format("%12s | %12s | %12s%n", item.getName(), item.getDesc(), item.getId()))
+                        .append("-------------------------------------------").append(System.lineSeparator())
                         .append(menu)
                         .toString())
         );
@@ -136,11 +136,9 @@ public class StartUITest {
         assertThat(new String(this.out.toByteArray()), is(
                 new StringBuilder()
                         .append(menu)
-                        .append("--------------- Поиск заявки по ID-----------------").append(System.lineSeparator())
-                        .append("      ").append(item.getName())
-                        .append(" |            ").append(item.getDesc())
-                        .append(" |   ").append(item.getId()).append(System.lineSeparator())
-                        .append("---------------------------------------------------").append(System.lineSeparator())
+                        .append("------------ Search item by Id ------------").append(System.lineSeparator())
+                        .append(String.format("%12s | %12s | %12s%n", item.getName(), item.getDesc(), item.getId()))
+                        .append("-------------------------------------------").append(System.lineSeparator())
                         .append(menu)
                         .toString())
         );
@@ -155,14 +153,10 @@ public class StartUITest {
         assertThat(new String(this.out.toByteArray()), is(
                 new StringBuilder()
                         .append(menu)
-                        .append("------------------- Все заявки --------------------").append(System.lineSeparator())
-                        .append("          ").append(item1.getName())
-                        .append(" |            ").append(item1.getDesc())
-                        .append(" |   ").append(item1.getId()).append(System.lineSeparator())
-                        .append("         ").append(item2.getName())
-                        .append(" |            ").append(item2.getDesc())
-                        .append(" |   ").append(item2.getId()).append(System.lineSeparator())
-                        .append("---------------------------------------------------").append(System.lineSeparator())
+                        .append("---------------- All items ----------------").append(System.lineSeparator())
+                        .append(String.format("%12s | %12s | %12s%n", item1.getName(), item1.getDesc(), item1.getId()))
+                        .append(String.format("%12s | %12s | %12s%n", item2.getName(), item2.getDesc(), item2.getId()))
+                        .append("--------------------------------------------").append(System.lineSeparator())
                         .append(menu)
                         .toString())
         );
