@@ -1,5 +1,8 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StartUI {
     /**
      * Получение данных от пользователя.
@@ -16,12 +19,16 @@ public class StartUI {
     public void init() {
         boolean repeat = true;
         int value;
-        MenuTracker menu = new MenuTracker(input, tracker);
+        MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        List<Integer> range = new ArrayList<>();
         menu.fillActions();
+        for (int i = 0; i < menu.getActionsLength(); i++) {
+            range.add(i);
+        }
         do {
             menu.show();
             System.out.println();
-            value = Integer.valueOf(input.ask("Select: "));
+            value = input.ask("Select: ", range);
             if (value == 6) {
                 repeat = false;
             }
