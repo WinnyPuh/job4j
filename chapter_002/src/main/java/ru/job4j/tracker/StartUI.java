@@ -13,6 +13,8 @@ public class StartUI {
      */
     private final Tracker tracker;
 
+    private int[] ranges = new int[] {};
+
     /**
      * Основой цикл программы.
      */
@@ -52,6 +54,6 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(), new Tracker()).init();
     }
 }
