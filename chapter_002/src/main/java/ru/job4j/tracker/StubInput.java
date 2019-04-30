@@ -1,4 +1,7 @@
 package ru.job4j.tracker;
+
+import java.util.List;
+
 /**
  * 3. Используя класс StubInput написать тесты проверяющие поведение пользователя[#116973].
  * @author Jora Abjora.
@@ -36,12 +39,12 @@ public class StubInput implements Input {
      */
     @Override
     public String ask(String question) {
-        return answers[position++];
+        return this.answers[this.position++];
     }
 
     @Override
-    public int ask(String question, int[] range) {
-        throw new UnsupportedoperationException("Unsupported operation");
+    public int ask(String question, List<Integer> range) {
+        //throw new UnsupportedOperationException("Unsupported operation");
         return 0;
     }
 }
