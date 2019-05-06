@@ -13,7 +13,17 @@ public class StartUI {
      */
     private final Tracker tracker;
 
-    private int[] ranges = new int[] {};
+    //private int[] ranges = new int[] {};
+
+    /**
+     * Конструтор инициализирующий поля.
+     * @param input ввод данных.
+     * @param tracker хранилище заявок.
+     */
+    public StartUI(Input input, Tracker tracker) {
+        this.input = input;
+        this.tracker = tracker;
+    }
 
     /**
      * Основой цикл программы.
@@ -39,21 +49,16 @@ public class StartUI {
     }
 
     /**
-     * Конструтор инициализирующий поля.
-     * @param input ввод данных.
-     * @param tracker хранилище заявок.
-     */
-    public StartUI(Input input, Tracker tracker) {
-        this.input = input;
-        this.tracker = tracker;
-    }
-
-    /**
      * 1. Создать действия UserAction[#116997].
      * Запускт программы.
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ValidateInput(), new Tracker()).init();
+        new StartUI(
+                new ValidateInput(
+                        new ConsoleInput()
+                ),
+                new Tracker()
+        ).init();
     }
 }

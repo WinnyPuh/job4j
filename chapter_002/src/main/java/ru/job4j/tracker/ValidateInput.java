@@ -7,7 +7,18 @@ import java.util.List;
  * @version $Id$.
  * @since 0.1
  */
-public class ValidateInput extends ConsoleInput {
+public class ValidateInput implements Input{
+
+    private final Input input;
+
+    public ValidateInput(final Input input) {
+        this.input = input;
+    }
+
+    @Override
+    public String ask(String question) {
+        return this.input.ask(question);
+    }
 
     @Override
     public int ask(String question, List<Integer> range) {
@@ -15,7 +26,7 @@ public class ValidateInput extends ConsoleInput {
         int value = -1;
         do {
             try {
-                value = super.ask(question, range);
+                value = this.input.ask(question, range);
                 invalid = false;
             } catch (MenuOutException moe) {
                 System.out.println("Please select key from menu.");
