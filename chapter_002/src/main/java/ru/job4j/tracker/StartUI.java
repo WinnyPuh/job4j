@@ -2,7 +2,12 @@ package ru.job4j.tracker;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ *
+ * @author Jora Abjora.
+ * @version $Id$.
+ * @since 0.1
+ */
 public class StartUI {
     /**
      * Получение данных от пользователя.
@@ -29,11 +34,27 @@ public class StartUI {
      * Основой цикл программы.
      */
     public void init() {
-        boolean repeat = true;
         int value;
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
         List<Integer> range = new ArrayList<>();
         menu.fillActions();
+        UserAction newAction = new UserAction() {
+            @Override
+            public int key() {
+                return menu.getPosition();
+            }
+
+            @Override
+            public void execute(Input input, Tracker tracker) {
+
+            }
+
+            @Override
+            public String info() {
+                return menu.getPosition() + ". New action";
+            }
+        };
+        menu.addAction(newAction);
         for (int i = 0; i < menu.getActionsLength(); i++) {
             range.add(i);
         }
@@ -41,11 +62,8 @@ public class StartUI {
             menu.show();
             System.out.println();
             value = input.ask("Select: ", range);
-            if (value == 6) {
-                repeat = false;
-            }
             menu.select(value);
-        } while (repeat);
+        } while (!"y".equals(this.input.ask("Exit?(y): ")));
     }
 
     /**

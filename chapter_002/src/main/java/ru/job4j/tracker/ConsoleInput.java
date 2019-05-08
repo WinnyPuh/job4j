@@ -2,7 +2,12 @@ package ru.job4j.tracker;
 
 import java.util.List;
 import java.util.Scanner;
-
+/**
+ *
+ * @author Jora Abjora.
+ * @version $Id$.
+ * @since 0.1
+ */
 public class ConsoleInput implements Input {
     private Scanner scanner = new Scanner(System.in);
 

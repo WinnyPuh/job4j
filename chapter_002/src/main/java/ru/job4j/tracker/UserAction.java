@@ -1,5 +1,10 @@
 package ru.job4j.tracker;
-
+/**
+ *
+ * @author Jora Abjora.
+ * @version $Id$.
+ * @since 0.1
+ */
 public interface UserAction {
 
     /**
