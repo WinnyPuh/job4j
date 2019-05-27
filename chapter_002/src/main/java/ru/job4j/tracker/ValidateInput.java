@@ -7,7 +7,7 @@ import java.util.List;
  * @version $Id$.
  * @since 0.1
  */
-public class ValidateInput implements Input{
+public class ValidateInput implements Input {
 
     private final Input input;
 

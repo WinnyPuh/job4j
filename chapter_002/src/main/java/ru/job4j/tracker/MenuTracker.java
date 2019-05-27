@@ -2,7 +2,12 @@ package ru.job4j.tracker;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ *
+ * @author Jora Abjora.
+ * @version $Id$.
+ * @since 0.1
+ */
 public class MenuTracker {
     /**
      * @param keeps object reference.
@@ -16,6 +21,14 @@ public class MenuTracker {
      * @param keeps array type UserAction reference.
      */
     private List<UserAction> actions = new ArrayList<>();
+    private int position = 0;
+
+    public int getPosition() {
+        return position;
+    }
+    public void setPosition(int position) {
+        this.position = position;
+    }
 
     /**
      * Construction.
@@ -37,13 +50,17 @@ public class MenuTracker {
      * Method fills array.
      */
     public void fillActions() {
-        this.actions.add(new AddItem(0, "Add new Item"));
-        this.actions.add(new ShowItem(1, "Show all items"));
-        this.actions.add(new UpdateItem(2, "Edit item"));
-        this.actions.add(new DeleteItem(3, "Delete item"));
-        this.actions.add(new FindItemById(4, "Find item by Id"));
-        this.actions.add(new FindItemsByName(5, "Find items by name"));
-        this.actions.add(new ExitProgram(6, "Exit program"));
+        this.actions.add(new AddItem(position++, "Add new Item"));
+        this.actions.add(new ShowItem(position++, "Show all items"));
+        this.actions.add(new UpdateItem(position++, "Edit item"));
+        this.actions.add(new DeleteItem(position++, "Delete item"));
+        this.actions.add(new FindItemById(position++, "Find item by Id"));
+        this.actions.add(new FindItemsByName(position++, "Find items by name"));
+        this.actions.add(new ExitProgram(position++, "Exit program"));
+    }
+
+    public void addAction(UserAction action) {
+        this.actions.add(action);
     }
     /**
      *
@@ -60,16 +77,10 @@ public class MenuTracker {
         }
     }
 
-    private class AddItem implements UserAction {
-        private int num;
-        private String str;
+    private class AddItem extends BaseAction {
+
         public AddItem(int num, String str) {
-            this.num = num;
-            this.str = str;
-        }
-        @Override
-        public int key() {
-            return num;
+            super(num, str);
         }
 
         @Override
@@ -84,23 +95,12 @@ public class MenuTracker {
             System.out.println("------------ New Item with Name: " + item.getName());
             System.out.println("------------ New Item with Description: " + item.getDesc());
         }
-
-        @Override
-        public String info() {
-            return String.format("%s. %s", num, str);
-        }
     }
 
-    private class ShowItem implements UserAction {
-        private int num;
-        private String str;
+    private class ShowItem extends BaseAction {
+
         public ShowItem(int num, String str) {
-            this.num = num;
-            this.str = str;
-        }
-        @Override
-        public int key() {
-            return num;
+            super(num, str);
         }
 
         @Override
@@ -111,24 +111,12 @@ public class MenuTracker {
             }
             System.out.println("--------------------------------------------");
         }
-
-        @Override
-        public String info() {
-            return String.format("%s. %s", num, str);
-        }
     }
 
-    private class UpdateItem implements UserAction {
-        private int num;
-        private String str;
-        public UpdateItem(int num, String str) {
-            this.num = num;
-            this.str = str;
-        }
+    private class UpdateItem extends BaseAction {
 
-        @Override
-        public int key() {
-            return num;
+        public UpdateItem(int num, String str) {
+            super(num, str);
         }
 
         @Override
@@ -145,24 +133,12 @@ public class MenuTracker {
                 System.out.println("----------- Item doesn't changed ----------");
             }
         }
-
-        @Override
-        public String info() {
-            return String.format("%s. %s", num, str);
-        }
     }
 
-    private class DeleteItem implements UserAction {
-        private int num;
-        private String str;
-        public DeleteItem(int num, String str) {
-            this.num = num;
-            this.str = str;
-        }
+    private class DeleteItem extends BaseAction {
 
-        @Override
-        public int key() {
-            return num;
+        public DeleteItem(int num, String str) {
+            super(num, str);
         }
 
         @Override
@@ -175,24 +151,12 @@ public class MenuTracker {
                 System.out.println("------------ Item didn't delete -----------");
             }
         }
-
-        @Override
-        public String info() {
-            return String.format("%s. %s", num, str);
-        }
     }
 
-    private class FindItemById implements UserAction {
-        private int num;
-        private String str;
-        public FindItemById(int num, String str) {
-            this.num = num;
-            this.str = str;
-        }
+    private class FindItemById extends BaseAction {
 
-        @Override
-        public int key() {
-            return num;
+        public FindItemById(int num, String str) {
+            super(num, str);
         }
 
         @Override
@@ -207,23 +171,12 @@ public class MenuTracker {
                 System.out.println("------------- Item didn't find ------------");
             }
         }
-
-        @Override
-        public String info() {
-            return String.format("%s. %s", num, str);
-        }
     }
 
-    private class FindItemsByName implements UserAction {
-        private int num;
-        private String str;
+    private class FindItemsByName extends BaseAction {
+
         public FindItemsByName(int num, String str) {
-            this.num = num;
-            this.str = str;
-        }
-        @Override
-        public int key() {
-            return num;
+            super(num, str);
         }
 
         @Override
@@ -236,34 +189,17 @@ public class MenuTracker {
                 System.out.println("-------------------------------------------");
             }
         }
-
-        @Override
-        public String info() {
-            return String.format("%s. %s", num, str);
-        }
     }
 
-    private class ExitProgram implements UserAction {
-        private int num;
-        private String str;
-        public ExitProgram(int num, String str) {
-            this.num = num;
-            this.str = str;
-        }
+    private class ExitProgram extends BaseAction {
 
-        @Override
-        public int key() {
-            return num;
+        public ExitProgram(int num, String str) {
+            super(num, str);
         }
 
         @Override
         public void execute(Input input, Tracker tracker) {
 
-        }
-
-        @Override
-        public String info() {
-            return String.format("%s. %s", num, str);
         }
     }
 }
