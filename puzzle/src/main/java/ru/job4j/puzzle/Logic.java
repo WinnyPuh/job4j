@@ -76,7 +76,7 @@ public class Logic {
                 if (table[i][j] == 1) {
                     res1++;
                 }
-                if(table[j][i] == 1) {
+                if (table[j][i] == 1) {
                     res2++;
                 }
             }
