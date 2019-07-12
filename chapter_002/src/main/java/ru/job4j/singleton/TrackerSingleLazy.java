@@ -9,7 +9,7 @@ package ru.job4j.singleton;
 public class TrackerSingleLazy {
     private static TrackerSingleLazy instance;
 
-    private TrackerSingleLazy(){
+    private TrackerSingleLazy() {
     }
 
     public static TrackerSingleLazy getInstance() {

@@ -183,7 +183,8 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             System.out.println("----------- Search item by name -----------");
             String name = input.ask("Please, provide name item for search: ");
-            Item[] result = tracker.findByName(name);
+            List<Item> result = tracker.findByName(name);
+            //Item[] result = tracker.findByName(name);
             for (Item el : result) {
                 System.out.printf("%12s | %12s | %12s%n", el.getName(), el.getDesc(), el.getId());
                 System.out.println("-------------------------------------------");

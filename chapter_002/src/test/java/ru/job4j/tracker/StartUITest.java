@@ -31,7 +31,7 @@ public class StartUITest {
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Input input = new StubInput(new String[]{"0", "test name", "desc", "n", "6", "y"});   //создаём StubInput с последовательностью действий
         new StartUI(input, tracker).init();     //   создаём StartUI и вызываем метод init()
-        assertThat(tracker.findAll()[0].getName(), is("test name")); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
+        assertThat(tracker.findAll().get(0).getName(), is("test name")); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
     }
 
     @Test
@@ -43,7 +43,7 @@ public class StartUITest {
         // создаём StartUI и вызываем метод init()
         new StartUI(input, tracker).init();
         // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
-        assertThat(tracker.findById(item.getId()).getName(), is("test replace"));
+        assertThat(item.getName(), is("test replace"));
     }
     @Test
     public void whenDeleteThenTrackerHasNotValue() {
@@ -51,7 +51,7 @@ public class StartUITest {
         Item itemSecond = tracker.add(new Item("test second name", "desc"));
         Input input = new StubInput(new String[]{"3", itemFirst.getId(), "n", "6", "y"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findAll()[0].getName(), is(itemSecond.getName()));
+        assertThat(tracker.findAll().get(0).getName(), is(itemSecond.getName()));
     }
 
     @Test
@@ -67,7 +67,7 @@ public class StartUITest {
         Item item = tracker.add(new Item("test name", "desc"));
         Input input = new StubInput(new String[]{"5", item.getName(), "n", "6", "y"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findByName(item.getName())[0].getName(), is(item.getName()));
+        assertThat(tracker.findByName(item.getName()).get(0).getName(), is(item.getName()));
     }
 
     private final PrintStream stdout = System.out; // получаем ссылку на стандартный вывод в консоль.
@@ -103,11 +103,11 @@ public class StartUITest {
                         .append(menu)
                         .append("------------ Adding new item --------------").append(System.lineSeparator())
                         .append("------------ New Item with Id: ")
-                        .append(tracker.findAll()[0].getId()).append(System.lineSeparator())
+                        .append(tracker.findAll().get(0).getId()).append(System.lineSeparator())
                         .append("------------ New Item with Name: ")
-                        .append(tracker.findAll()[0].getName()).append(System.lineSeparator())
+                        .append(tracker.findAll().get(0).getName()).append(System.lineSeparator())
                         .append("------------ New Item with Description: ")
-                        .append(tracker.findAll()[0].getDesc()).append(System.lineSeparator())
+                        .append(tracker.findAll().get(0).getDesc()).append(System.lineSeparator())
                         .append(menu)
                 .toString())
         );
