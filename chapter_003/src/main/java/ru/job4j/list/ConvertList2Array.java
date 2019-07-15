@@ -18,7 +18,7 @@ public class ConvertList2Array {
      * @return
      */
     public int[][] toArray(List<Integer> list, int rows) {
-        int cells = list.size()/rows + (list.size()%rows > 0 ? 1 : 0);
+        int cells = list.size() / rows + (list.size() % rows > 0 ? 1 : 0);
         int[][] array = new int[rows][cells];
         int row = 0;
         int cell = 0;
@@ -33,7 +33,7 @@ public class ConvertList2Array {
         return array;
     }
 
-    public List<Integer> convert (List<int[]> list) {
+    public List<Integer> convert(List<int[]> list) {
         List<Integer> result = new ArrayList<>();
         for (int[] array : list) {
             for (int value : array) {

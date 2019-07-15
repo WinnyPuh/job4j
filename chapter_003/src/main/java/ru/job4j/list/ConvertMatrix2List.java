@@ -15,7 +15,7 @@ public class ConvertMatrix2List {
      * @param array - двумерный массив.
      * @return
      */
-    public List<Integer> toList (int[][] array) {
+    public List<Integer> toList(int[][] array) {
         List<Integer> list = new ArrayList<>();
 
         for (int[] arr : array) {

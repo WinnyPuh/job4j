@@ -14,7 +14,7 @@ public class UserConvertTest {
         UserConvert userConvert = new UserConvert();
         HashMap<Integer, User> result = new HashMap<>();
         ArrayList<User> userList = new ArrayList<>();
-        userList.add(new User(1,"Vanya", "MSK"));
+        userList.add(new User(1, "Vanya", "MSK"));
         userList.add(new User(2, "Petya", "SPB"));
         result = userConvert.process(userList);
 
