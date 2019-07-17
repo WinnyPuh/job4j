@@ -37,11 +37,13 @@ public class SortUser {
     }
 
     public List<User> sortByAllFields (List<User> list) {
-        sort(list);
+
         Collections.sort(list, new Comparator<User>() {
             @Override
             public int compare(User user, User t1) {
-                return user.getName().compareTo(t1.getName());
+                int compareName = user.getName().compareTo(t1.getName());
+                int compareAge = Integer.compare(user.getAge(), t1.getAge());
+                return (compareName == 0) ? compareAge : compareName;
             }
         });
         return list;
