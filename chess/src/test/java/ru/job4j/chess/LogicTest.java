@@ -54,7 +54,7 @@ public class LogicTest {
     public void whereKingBlackCanNotMove() {
         logic.add(new KingBlack(Cell.E8));
         try {
-            assertThat(logic.move(Cell.E8, Cell.C6), is(false));
+            assertThat(logic.move(Cell.E8, Cell.C5), is(false));
         } catch (ImpossibleMoveException ime) {
             ime.printStackTrace();
         } catch (OccupiedWayException owe) {

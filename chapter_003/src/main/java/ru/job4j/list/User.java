@@ -6,7 +6,7 @@ package ru.job4j.list;
  * @version $.
  * @since 0.1
  */
-public class User implements Comparable<User>{
+public class User implements Comparable<User> {
     /**
      * Идентификатор пользователя.
      */
@@ -56,9 +56,6 @@ public class User implements Comparable<User>{
 
     @Override
     public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                '}';
+        return "User{ name='" + name + '\'' + ", age=" + age + '}';
     }
 }

@@ -29,7 +29,7 @@ public class QueenBlack implements Figure {
         if ((rangeX != 0 && rangeY != 0) && (Math.abs(rangeX) != Math.abs(rangeY))) {
              throw new ImpossibleMoveException("It`s impossible to move this way");
         }
-        Cell[] steps = new Cell[Math.abs(rangeX)];
+        Cell[] steps = new Cell[Math.max(Math.abs(rangeX), Math.abs(rangeY))];
         int size = Math.max(Math.abs(rangeX), Math.abs(rangeY));
         for (int i = 0; i < size; i++) {
             if (rangeX != 0 && rangeY != 0) {
