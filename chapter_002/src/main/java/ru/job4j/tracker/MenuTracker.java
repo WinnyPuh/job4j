@@ -2,6 +2,8 @@ package ru.job4j.tracker;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
+
 /**
  *
  * @author Jora Abjora.
@@ -20,6 +22,8 @@ public class MenuTracker {
     /**
      * @param keeps array type UserAction reference.
      */
+    private final Consumer<String> output;
+
     private List<UserAction> actions = new ArrayList<>();
     private int position = 0;
 
@@ -34,10 +38,12 @@ public class MenuTracker {
      * Construction.
      * @param input object type Input.
      * @param tracker object type Tracker.
+     * @param output object type Consumer<String>.
      */
-    public MenuTracker(Input input, Tracker tracker) {
+    public MenuTracker(Input input, Tracker tracker, Consumer<String> output) {
         this.input = input;
         this.tracker = tracker;
+        this.output = output;
     }
     /**
      * Method to get menu array.
@@ -72,7 +78,7 @@ public class MenuTracker {
     public void show() {
         for (UserAction action : this.actions) {
             if (action != null) {
-                System.out.println(action.info());
+                output.accept(action.info());
             }
         }
     }
@@ -85,15 +91,14 @@ public class MenuTracker {
 
         @Override
         public void execute(Input input, Tracker tracker) {
-
-            System.out.println("------------ Adding new item --------------");
+            output.accept("------------ Adding new item --------------");
             String name = input.ask("Please, provide item name: ");
             String desc = input.ask("Please, provide item desc: ");
             Item item = new Item(name, desc);
             tracker.add(item);
-            System.out.println("------------ New Item with Id: " + item.getId());
-            System.out.println("------------ New Item with Name: " + item.getName());
-            System.out.println("------------ New Item with Description: " + item.getDesc());
+            output.accept("------------ New Item with Id: " + item.getId());
+            output.accept("------------ New Item with Name: " + item.getName());
+            output.accept("------------ New Item with Description: " + item.getDesc());
         }
     }
 
@@ -105,11 +110,11 @@ public class MenuTracker {
 
         @Override
         public void execute(Input input, Tracker tracker) {
-            System.out.println("---------------- All items ----------------");
+            output.accept("---------------- All items ----------------");
             for (Item item : tracker.findAll()) {
-                System.out.printf("%12s | %12s | %12s%n", item.getName(), item.getDesc(), item.getId());
+                output.accept(String.format("%12s | %12s | %12s%n", item.getName(), item.getDesc(), item.getId()));
             }
-            System.out.println("--------------------------------------------");
+            output.accept("--------------------------------------------");
         }
     }
 
@@ -121,16 +126,16 @@ public class MenuTracker {
 
         @Override
         public void execute(Input input, Tracker tracker) {
-            System.out.println("--------------- Edit item -----------------");
+            output.accept("--------------- Edit item -----------------");
             String id = input.ask("Please, provide ID item for edit: ");
             String name = input.ask("Please, provide item new name: ");
             String desc = input.ask("Please, provide item new desc: ");
             Item result = new Item(name, desc);
 
             if (tracker.replace(id, result)) {
-                System.out.println("--------------- Item changed --------------");
+                output.accept("--------------- Item changed --------------");
             } else {
-                System.out.println("----------- Item doesn't changed ----------");
+                output.accept("----------- Item doesn't changed ----------");
             }
         }
     }
@@ -143,12 +148,12 @@ public class MenuTracker {
 
         @Override
         public void execute(Input input, Tracker tracker) {
-            System.out.println("-------------- Delete item ----------------");
+            output.accept("-------------- Delete item ----------------");
             String id = input.ask("Please, provide ID item for delete: ");
             if (id != null && tracker.delete(id)) {
-                System.out.println("--------------- Item delete ---------------");
+                output.accept("--------------- Item delete ---------------");
             } else {
-                System.out.println("------------ Item didn't delete -----------");
+                output.accept("------------ Item didn't delete -----------");
             }
         }
     }
@@ -161,14 +166,14 @@ public class MenuTracker {
 
         @Override
         public void execute(Input input, Tracker tracker) {
-            System.out.println("------------ Search item by Id ------------");
+            output.accept("------------ Search item by Id ------------");
             String id = input.ask("Please, provide ID item for search: ");
             Item result = tracker.findById(id);
             if (id != null && result != null) {
-                System.out.printf("%12s | %12s | %12s%n", result.getName(), result.getDesc(), result.getId());
-                System.out.println("-------------------------------------------");
+                output.accept(String.format("%12s | %12s | %12s%n", result.getName(), result.getDesc(), result.getId()));
+                output.accept("-------------------------------------------");
             } else {
-                System.out.println("------------- Item didn't find ------------");
+                output.accept("------------- Item didn't find ------------");
             }
         }
     }
@@ -181,13 +186,12 @@ public class MenuTracker {
 
         @Override
         public void execute(Input input, Tracker tracker) {
-            System.out.println("----------- Search item by name -----------");
+            output.accept("----------- Search item by name -----------");
             String name = input.ask("Please, provide name item for search: ");
             List<Item> result = tracker.findByName(name);
-            //Item[] result = tracker.findByName(name);
             for (Item el : result) {
-                System.out.printf("%12s | %12s | %12s%n", el.getName(), el.getDesc(), el.getId());
-                System.out.println("-------------------------------------------");
+                output.accept(String.format("%12s | %12s | %12s%n", el.getName(), el.getDesc(), el.getId()));
+                output.accept("-------------------------------------------");
             }
         }
     }
