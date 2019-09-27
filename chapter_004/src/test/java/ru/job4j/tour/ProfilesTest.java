@@ -22,13 +22,26 @@ public class ProfilesTest {
     @Test
     public void getAddressesToList() {
         List<Address> expect = new ArrayList<>(Arrays.asList(
+                new Address("Kiev", "Main", 3, 5),
                 new Address("Moscow", "red", 1, 1),
                 new Address("NY", "Main", 1, 1),
-                new Address("SPB", "Nevskiy", 2, 1),
-                new Address("Kiev", "Main", 3, 5)
+                new Address("SPB", "Nevskiy", 2, 1)
         ));
         Profiles profiles = new Profiles();
-        List<Address> result =profiles.collect(profileList);
+        List<Address> result = profiles.collect(profileList);
+        Assert.assertThat(result, is(expect));
+    }
+    @Test
+    public void getAddressesToListWithoutTake() {
+        List<Address> expect = new ArrayList<>(Arrays.asList(
+                new Address("Kiev", "Main", 3, 5),
+                new Address("Moscow", "red", 1, 1),
+                new Address("NY", "Main", 1, 1),
+                new Address("SPB", "Nevskiy", 2, 1)
+        ));
+        Profiles profiles = new Profiles();
+        profileList.add(new Profile(new Address("Moscow", "red", 1, 1)));
+        List<Address> result = profiles.collect(profileList);
         Assert.assertThat(result, is(expect));
     }
 }
