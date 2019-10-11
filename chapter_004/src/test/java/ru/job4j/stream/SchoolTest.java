@@ -1,9 +1,8 @@
 package ru.job4j.stream;
 
 import org.junit.Test;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
+import java.util.*;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -50,6 +49,15 @@ public class SchoolTest {
                 new Student(99),
                 new Student(87)
         ));
+        assertThat(result, is(expect));
+    }
+    @Test
+    public void convertListToMap() {
+        Map<Integer, Student> result = new School().convertToMap(students);
+        Map<Integer, Student> expect = new HashMap<>();
+        for (Student stu : students) {
+            expect.put(stu.getScore(), stu);
+        }
         assertThat(result, is(expect));
     }
 }
