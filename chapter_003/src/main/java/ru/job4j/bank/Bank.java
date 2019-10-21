@@ -12,7 +12,7 @@ import java.util.TreeMap;
  */
 public class Bank {
 
-    private TreeMap<User, ArrayList<Account>> userMap = new TreeMap<>();
+    private Map<User, ArrayList<Account>> userMap = new TreeMap<>();
 
     public void addUser(User user) {
         this.userMap.putIfAbsent(user, new ArrayList<>());
@@ -53,15 +53,7 @@ public class Bank {
     }
 
     public Account getUserAccount(String passport, String requisite) {
-        List<Account> acc = getUserAccounts(passport);
-        Account result = null;
-        for (Account value : acc) {
-            if (value.getReqs().equals(requisite)) {
-                result = value;
-                break;
-            }
-        }
-        return result;
+        return  getUserAccounts(passport).stream().filter(account -> account.getReqs().equals(requisite)).findFirst().orElse(null);
     }
 
     public boolean transferMoney(String  srcPassport, String srcRequisite,
@@ -78,20 +70,8 @@ public class Bank {
     }
     
     private User getUser(String passport) {
-        User result = null;
-        for (Map.Entry<User, ArrayList<Account>> entry : this.userMap.entrySet()) {
-            if (entry.getKey().getPassport().equals(passport)) {
-                result = entry.getKey();
-            }
-        }
-        return result;
+        return userMap.keySet().stream().filter(user -> user.getPassport().equals(passport)).findFirst().orElse(null);
     }
-
-//    private Account getAccount(User user,String requisite) {
-//        ArrayList<Account> acc = this.userMap.get(user);
-//
-//        return acc.;
-//    }
 
     public String toString() {
         return "Bank{" + "accounts=" + userMap + "}";
