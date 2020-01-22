@@ -32,4 +32,17 @@ public class MaxTest {
         int result = max.max(1, 5);
         assertThat(result, is(5));
     }
+
+    @Test
+    public void whenMax1and5and10Then10() {
+        Max max = new Max();
+        int result = max.max(1, 5, 10);
+        assertThat(result, is(10));
+    }
+    @Test
+    public void whenMax1and5and10and3Then10() {
+        Max max = new Max();
+        int result = max.max(1, 5, 10, 3);
+        assertThat(result, is(10));
+    }
 }
