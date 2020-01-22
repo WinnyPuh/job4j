@@ -25,7 +25,7 @@ public class LambdaFuncTest {
 
     @Test
     public void whenLogarithmicFunctionThenLogarithmicResults() {
-        List<Double> result = func.diapason(2, 5, x -> (Math.log(x)/Math.log(2)));
+        List<Double> result = func.diapason(2, 5, x -> (Math.log(x) / Math.log(2)));
         List<Double> expected = Arrays.asList(1D, 1.5849625007211563, 2D);
         assertThat(result, is(expected));
     }
