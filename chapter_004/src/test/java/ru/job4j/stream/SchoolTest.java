@@ -60,4 +60,17 @@ public class SchoolTest {
         }
         assertThat(result, is(expect));
     }
+    @Test
+    public void sortAndFilter() {
+        List<Student> result = new School().levelOf(students, 50);
+        List<Student> expect = new ArrayList<>(Arrays.asList(
+                new Student(99),
+                new Student(87),
+                new Student(78),
+                new Student(67),
+                new Student(56),
+                new Student(54)
+        ));
+        assertThat(result, is(expect));
+    }
 }

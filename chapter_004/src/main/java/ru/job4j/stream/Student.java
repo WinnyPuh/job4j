@@ -1,13 +1,16 @@
 package ru.job4j.stream;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 /**Класс описывает
  * @author Jora Abjora.
  * @version $.
  * @since 0.1
  */
-public class Student {
+public class Student implements Comparable<Student> {
+   private String name;
    private int score;
 
    public Student(int score) {
@@ -38,5 +41,10 @@ public class Student {
       }
       Student student = (Student) obj;
       return score == student.score;
+   }
+
+   @Override
+   public int compareTo(Student student) {
+      return this.getScore() - student.getScore();
    }
 }
